@@ -1,1 +1,1 @@
-Instagram Client
+Unofficial Instagram Client for studying purposes
