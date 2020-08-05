@@ -41,7 +41,7 @@ class FeedViewController: UIViewController {
 
     func createPostsArray() {
         for _ in 0...6 {
-            posts.append(Post(postAuthor: "Glasses", postImage: UIImage(named: "sample")!, postDesc: "This is best Glasses I've ever seen"))
+            posts.append(Post(postAuthor: "joker", postImage: UIImage(named: "sample")!, postDesc: "Are you ready to laugh?"))
         }
     }
 }
