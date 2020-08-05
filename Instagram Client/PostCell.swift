@@ -30,7 +30,6 @@ class PostCell : UITableViewCell {
         let imgView = UIImageView()
         imgView.contentMode = .scaleAspectFill
         imgView.clipsToBounds = true
-        imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView
     }()
      
@@ -40,7 +39,6 @@ class PostCell : UITableViewCell {
         lbl.font = UIFont.systemFont(ofSize: 16)
         lbl.textAlignment = .left
         lbl.numberOfLines = 0
-        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
      }()
     
@@ -48,7 +46,6 @@ class PostCell : UITableViewCell {
         let btn = UIButton(type: .custom)
         btn.setImage(UIImage(named: "like"), for: .normal)
         btn.imageView?.contentMode = .scaleAspectFill
-        btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
     
@@ -56,7 +53,6 @@ class PostCell : UITableViewCell {
         let btn = UIButton(type: .custom)
         btn.setImage(UIImage(named: "comment"), for: .normal)
         btn.imageView?.contentMode = .scaleAspectFill
-        btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
     
@@ -64,55 +60,71 @@ class PostCell : UITableViewCell {
         let btn = UIButton(type: .custom)
         btn.setImage(UIImage(named: "bookmark"), for: .normal)
         btn.imageView?.contentMode = .scaleAspectFill
-        btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(postAuthor)
-        postAuthor.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        postAuthor.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-        postAuthor.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        postAuthor.heightAnchor.constraint(equalToConstant: 50).isActive = true
-
-        addSubview(postImage)
-        postImage.topAnchor.constraint(equalTo: postAuthor.bottomAnchor).isActive = true
-        postImage.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        postImage.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        postImage.heightAnchor.constraint(equalTo: widthAnchor).isActive = true
-        
-        addSubview(likeButton)
-        likeButton.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 5).isActive = true
-        likeButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-        likeButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
-        likeButton.heightAnchor.constraint(equalTo: likeButton.widthAnchor).isActive = true
-        
-        addSubview(commentButton)
-        commentButton.centerYAnchor.constraint(equalTo: likeButton.centerYAnchor).isActive = true
-        commentButton.leftAnchor.constraint(equalTo: likeButton.rightAnchor, constant: 20).isActive = true
-        commentButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
-        commentButton.heightAnchor.constraint(equalTo: commentButton.widthAnchor).isActive = true
-        
-        addSubview(saveButton)
-        saveButton.centerYAnchor.constraint(equalTo: likeButton.centerYAnchor).isActive = true
-        saveButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        saveButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
-        saveButton.heightAnchor.constraint(equalTo: saveButton.widthAnchor).isActive = true
-        
-        addSubview(postDescriptionLabel)
-        postDescriptionLabel.topAnchor.constraint(equalTo: likeButton.bottomAnchor, constant: 5).isActive = true
-        postDescriptionLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-        postDescriptionLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        postDescriptionLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        postDescriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        
-        
+        createCell()
      }
      
+    func createCell(){
+        postAuthor.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(postAuthor)
+        NSLayoutConstraint.activate([
+            postAuthor.topAnchor.constraint(equalTo: topAnchor),
+            postAuthor.leftAnchor.constraint(equalTo: leftAnchor, constant: 20),
+            postAuthor.rightAnchor.constraint(equalTo: rightAnchor),
+            postAuthor.heightAnchor.constraint(equalToConstant: 50)
+        ])
+
+        postImage.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(postImage)
+        NSLayoutConstraint.activate([
+            postImage.topAnchor.constraint(equalTo: postAuthor.bottomAnchor),
+            postImage.leftAnchor.constraint(equalTo: leftAnchor),
+            postImage.rightAnchor.constraint(equalTo: rightAnchor),
+            postImage.heightAnchor.constraint(equalTo: widthAnchor)
+        ])
+        
+        likeButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(likeButton)
+        NSLayoutConstraint.activate([
+            likeButton.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 5),
+            likeButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 20),
+            likeButton.widthAnchor.constraint(equalToConstant: 32),
+            likeButton.heightAnchor.constraint(equalTo: likeButton.widthAnchor)
+        ])
+        
+        commentButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(commentButton)
+        NSLayoutConstraint.activate([
+            commentButton.centerYAnchor.constraint(equalTo: likeButton.centerYAnchor),
+            commentButton.leftAnchor.constraint(equalTo: likeButton.rightAnchor, constant: 20),
+            commentButton.widthAnchor.constraint(equalToConstant: 32),
+            commentButton.heightAnchor.constraint(equalTo: commentButton.widthAnchor)
+        ])
+        
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(saveButton)
+        NSLayoutConstraint.activate([
+            saveButton.centerYAnchor.constraint(equalTo: likeButton.centerYAnchor),
+            saveButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -20),
+            saveButton.widthAnchor.constraint(equalToConstant: 32),
+            saveButton.heightAnchor.constraint(equalTo: saveButton.widthAnchor)
+        ])
+        
+        postDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(postDescriptionLabel)
+        NSLayoutConstraint.activate([
+            postDescriptionLabel.topAnchor.constraint(equalTo: likeButton.bottomAnchor, constant: 10),
+            postDescriptionLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 20),
+            postDescriptionLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
+            postDescriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
+        ])
+    }
+    
      required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
      }
-     
- 
 }
